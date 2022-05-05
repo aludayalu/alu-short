@@ -18,11 +18,15 @@ app = App()
 def uwu(request: Request):
     cpath=request.path[1:]
     return HttpResponse(request, (base+query.get("redirs", cpath)+base2))
+def hp(request: Request):
+    cpath=request.path[1:]
+    return HttpResponse(request, (base+"https://exunclan.com"+base2))
 listrs=os.listdir("redirs")
 routes = []
 for x in listrs:
     estroute='/'+x
     routes.append(Path(estroute,uwu))
+routes.append(Path('/',hp))
 app.set_routes(routes)
 serverh = make_server("127.0.0.1", port, app)
 print('Server Listening On Port ',port)
